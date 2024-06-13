@@ -9,16 +9,14 @@ import lombok.*;
 @Document("clientes")
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString
+@Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Cliente extends Cuenta implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     private String codigo;
     private String cedula;
-    private String nombre;
-    private String email;
     private List<String> telefono;
-        private List<Negocio> favoritos;
+    private List<Negocio> favoritos;
 }
