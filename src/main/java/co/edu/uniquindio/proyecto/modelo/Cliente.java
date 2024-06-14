@@ -10,13 +10,27 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@Builder
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper=false)
 public class Cliente extends Cuenta implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     private String codigo;
     private String cedula;
+    private String nickname;
+    private String ciudadResidencia;
     private List<String> telefono;
     private List<Negocio> favoritos;
+
+
+    @Builder
+    public Cliente(String nombre, String password, String email, EstadoRegistro estado,String nickname,
+                   String cedula, List<String> telefono, List<Negocio> favoritos,String fotoPerfil,String ciudadResidencia){
+        super(nombre, password, email, estado,fotoPerfil);
+        this.cedula = cedula;
+        this.telefono = telefono;
+        this.favoritos = favoritos;
+        this.nickname = nickname;
+        this.ciudadResidencia= ciudadResidencia;
+    }
+
 }

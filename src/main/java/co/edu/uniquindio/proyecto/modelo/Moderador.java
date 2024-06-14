@@ -10,7 +10,6 @@ import lombok.*;
 @Document("moderadores")
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 
@@ -18,4 +17,8 @@ public class Moderador extends Cuenta implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     String codigo;
+
+    public Moderador(String nombre, String password, String email, EstadoRegistro estado) {
+        super(nombre, password, email, estado);
+    }
 }
