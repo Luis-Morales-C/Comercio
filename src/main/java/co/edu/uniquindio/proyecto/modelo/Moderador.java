@@ -18,7 +18,11 @@ public class Moderador extends Cuenta implements Serializable {
     @EqualsAndHashCode.Include
     String codigo;
 
-    public Moderador(String nombre, String password, String email, EstadoRegistro estado) {
-        super(nombre, password, email, estado);
+    public Moderador(String nombre, String password, String email, EstadoRegistro estado
+    ,String codigo, String fotoPerfil) {
+        super(nombre, password, email, estado,fotoPerfil);
+
+        this.codigo = codigo;
+
     }
 }

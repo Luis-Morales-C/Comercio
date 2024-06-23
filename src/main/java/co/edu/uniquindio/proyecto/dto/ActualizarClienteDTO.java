@@ -1,12 +1,11 @@
 package co.edu.uniquindio.proyecto.dto;
 
-public record DetalleClienteDTO (
+public record ActualizarClienteDTO(
         String id,
         String nombre,
         String fotoPerfil,
-        String nickname,
-        String email,
-        String ciudadResidencia
+        String ciudadResidencia,
+        String email
 ){
 
 }

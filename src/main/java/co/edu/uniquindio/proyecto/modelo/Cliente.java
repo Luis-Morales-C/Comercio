@@ -32,5 +32,4 @@ public class Cliente extends Cuenta implements Serializable {
         this.nickname = nickname;
         this.ciudadResidencia= ciudadResidencia;
     }
-
 }
