@@ -14,7 +14,6 @@ import lombok.*;
 public class Cliente extends Cuenta implements Serializable {
     @Id
     @EqualsAndHashCode.Include
-    private String codigo;
     private String cedula;
     private String nickname;
     private String ciudadResidencia;

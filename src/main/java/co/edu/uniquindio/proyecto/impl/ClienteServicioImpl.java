@@ -29,6 +29,9 @@ public class ClienteServicioImpl implements ClienteServicio {
     @Override
     public String registrarCliente(RegistroClienteDTO registroClienteDTO) throws Exception {
 
+        if(existeCedula(registroClienteDTO.cedula())){
+            throw new Exception("La cedula ya se encuentra registrada");
+        }
 
         if( existeEmail(registroClienteDTO.email()) ){
             throw new Exception("El correo ya se encuentra registrado");
@@ -50,7 +53,7 @@ public class ClienteServicioImpl implements ClienteServicio {
 
         Cliente clienteGuardado = clienteRepo.save(cliente);
 
-        return clienteGuardado.getCodigo();
+        return clienteGuardado.getCedula();
     }
 
     @Override
@@ -80,7 +83,7 @@ public class ClienteServicioImpl implements ClienteServicio {
        }
        Cliente cliente=optionalCliente.get();
 
-       return new DetalleClienteDTO(cliente.getCodigo(),cliente.getNombre(),cliente.getFotoPerfil(),
+       return new DetalleClienteDTO(cliente.getCedula(),cliente.getNombre(),cliente.getFotoPerfil(),
        cliente.getNickname(),cliente.getEmail(),cliente.getCiudadResidencia());
     }
 
@@ -99,12 +102,12 @@ public class ClienteServicioImpl implements ClienteServicio {
     }
 
     @Override
-    public List<ItemClienteDTO> listarCliente() throws Exception {
+    public List<ItemClienteDTO> listarClientes() throws Exception {
         List<Cliente> clientes=clienteRepo.findAll();
 
         List<ItemClienteDTO> lista=new ArrayList<>();
         for (Cliente cliente : clientes){
-           lista.add(new ItemClienteDTO(cliente.getCodigo(),cliente.getNombre(),cliente.getFotoPerfil(),
+           lista.add(new ItemClienteDTO(cliente.getCedula(),cliente.getNombre(),cliente.getFotoPerfil(),
                     cliente.getNickname(),cliente.getCiudadResidencia()));
         }
         return lista;

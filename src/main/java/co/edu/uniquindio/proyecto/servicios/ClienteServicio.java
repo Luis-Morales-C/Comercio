@@ -13,5 +13,5 @@ public interface ClienteServicio {
     void actualizarCliente(ActualizarClienteDTO actualizarClienteDTO)throws Exception;
     DetalleClienteDTO obtenerCliente(String id)throws Exception;
     void eliminarCliente(String id)throws Exception;
-    List<ItemClienteDTO> listarCliente()throws Exception;
+    List<ItemClienteDTO> listarClientes()throws Exception;
 }

@@ -15,18 +15,18 @@ import java.util.List;
 
 public class Negocio {
     @Id
-    String codigo;
+    String codigoNegocio;
     String codigoCliente;
     String nombre;
     String descripcion;
-    EstadoRegistro estadoRegistro;
+    EstadoNegocio estadoNegocio;
     TipoNegocio tipoNegocio;
     Ubicacion ubicacion;
     List<String> telefonos;
     List<Horario> horarios;
     List<String> imagenes;
+    float calificacion;
     List<HistorialRevision> historialRevisiones;
-    int calificacion;
     List<Comentario> listaComentarios;
 
 }
