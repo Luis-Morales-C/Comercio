@@ -14,7 +14,7 @@ public interface NegocioServicio {
 
     void eliminarNegocio(String codigo);
 
-    void actualizarNegocio(ActualizarNegocioDTO actualizarNegocioDTO);
+    void actualizarNegocio(ActualizarNegocioDTO actualizarNegocioDTO) throws Exception;
 
     ItemNegocioDTO obtenerNegocioPorCodigo(String idNegocio) throws ResourceNotFoundException;
     ItemNegocioDTO obtenerNegocioPorNombre(String nombre) throws ResourceNotFoundException;

@@ -4,6 +4,7 @@ import lombok.*;
 @Setter
 @ToString
 
+
 public class Ubicacion {
     double longitud;
     double latitud;

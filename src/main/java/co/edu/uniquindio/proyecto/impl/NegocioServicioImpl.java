@@ -49,6 +49,9 @@ public class NegocioServicioImpl implements NegocioServicio {
         negocio.setTelefonos(crearNegocioDTO.telefonos());
         negocio.setHorarios(crearNegocioDTO.horarios());
         negocio.setImagenes(crearNegocioDTO.imagenes());
+
+        negocioRepo.save(negocio);
+
         return negocio.getCodigoNegocio();
     }
 
@@ -64,8 +67,8 @@ public class NegocioServicioImpl implements NegocioServicio {
     }
 
     @Override
-    public void actualizarNegocio(ActualizarNegocioDTO actualizarNegocioDTO) {
-        if (!negocioRepo.existsById(actualizarNegocioDTO.codigoNegocio())){
+    public void actualizarNegocio(ActualizarNegocioDTO actualizarNegocioDTO) throws Exception {
+        if (negocioRepo.existsById(actualizarNegocioDTO.codigoNegocio())){
             Negocio negocio=negocioRepo.findById(actualizarNegocioDTO.codigoNegocio()).get();
             negocio.setNombre(actualizarNegocioDTO.nombre());
             negocio.setTipoNegocio(actualizarNegocioDTO.tipoNegocio());
@@ -75,6 +78,10 @@ public class NegocioServicioImpl implements NegocioServicio {
             negocio.setTelefonos(actualizarNegocioDTO.telefonos());
             negocio.setUbicacion(actualizarNegocioDTO.ubicacion());
 
+            negocioRepo.save(negocio);
+        }
+        else{
+            throw new Exception("Negocio no existe");
         }
     }
 

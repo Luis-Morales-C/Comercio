@@ -53,7 +53,7 @@ public class ClienteServicioImpl implements ClienteServicio {
 
         Cliente clienteGuardado = clienteRepo.save(cliente);
 
-        return clienteGuardado.getCedula();
+        return clienteGuardado.getId();
     }
 
     @Override
@@ -71,7 +71,6 @@ public class ClienteServicioImpl implements ClienteServicio {
        cliente.setFotoPerfil(actualizarClienteDTO.fotoPerfil());
        cliente.setEmail(actualizarClienteDTO.email());
        cliente.setCiudadResidencia(actualizarClienteDTO.ciudadResidencia());
-
        clienteRepo.save(cliente);
     }
 
@@ -86,7 +85,6 @@ public class ClienteServicioImpl implements ClienteServicio {
        return new DetalleClienteDTO(cliente.getCedula(),cliente.getNombre(),cliente.getFotoPerfil(),
        cliente.getNickname(),cliente.getEmail(),cliente.getCiudadResidencia());
     }
-
 
     @Override
     public void eliminarCliente(String id) throws Exception {
@@ -123,6 +121,4 @@ public class ClienteServicioImpl implements ClienteServicio {
     private boolean existeCedula(String cedula) {
         return clienteRepo.findByEmail(cedula).isPresent();
     }
-
-
 }

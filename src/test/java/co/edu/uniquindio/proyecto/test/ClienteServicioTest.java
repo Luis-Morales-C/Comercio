@@ -23,13 +23,12 @@ public class ClienteServicioTest {
 
     @Test
     public void registrarClienteTest() throws Exception {
-
         RegistroClienteDTO registroClienteDTO = new RegistroClienteDTO(
-                "Juan",
-                "1091884",
+                "Estocolmo",
+                "332545",
                 "mi foto",
-                "juanito",
-                "juan@email.com",
+                "estolcomito",
+                "estocolmo@email.com",
                 "mipassword",
                 "Armenia"
         );
