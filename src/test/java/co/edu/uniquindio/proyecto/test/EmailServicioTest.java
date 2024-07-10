@@ -1,7 +1,7 @@
 package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.dto.EmailDTO;
-import co.edu.uniquindio.proyecto.servicios.EmailServicio;
+import co.edu.uniquindio.proyecto.servicios.interfaces.EmailServicio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

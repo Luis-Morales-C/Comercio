@@ -15,7 +15,6 @@ public class Cliente extends Cuenta implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     private String id;
-    @EqualsAndHashCode.Include
     private String cedula;
     private String nickname;
     private String ciudadResidencia;

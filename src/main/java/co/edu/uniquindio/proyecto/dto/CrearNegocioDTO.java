@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
-public record CrearNegocioDTO (
+public record  CrearNegocioDTO (
 
         @NotBlank String codigoCliente,
         @NotBlank String nombre,
@@ -19,6 +19,4 @@ public record CrearNegocioDTO (
         @NotBlank List<Horario> horarios,
         @NotBlank List<String> imagenes
 
-){
-
-}
+){}

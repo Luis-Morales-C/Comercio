@@ -1,4 +1,4 @@
-package co.edu.uniquindio.proyecto.impl;
+package co.edu.uniquindio.proyecto.servicios.impl;
 
 import co.edu.uniquindio.proyecto.dto.ActualizarClienteDTO;
 import co.edu.uniquindio.proyecto.dto.DetalleClienteDTO;
@@ -8,13 +8,14 @@ import co.edu.uniquindio.proyecto.exception.ResourceNotFoundException;
 import co.edu.uniquindio.proyecto.modelo.Cliente;
 import co.edu.uniquindio.proyecto.modelo.EstadoRegistro;
 import co.edu.uniquindio.proyecto.repositorios.ClienteRepo;
-import co.edu.uniquindio.proyecto.servicios.ClienteServicio;
+import co.edu.uniquindio.proyecto.servicios.interfaces.ClienteServicio;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -41,15 +42,21 @@ public class ClienteServicioImpl implements ClienteServicio {
             throw new Exception("El nickname ya se encuentra registrado por otro usuario");
         }
 
+
+
         Cliente cliente = Cliente.builder()
                 .cedula(registroClienteDTO.cedula())
                 .nombre(registroClienteDTO.nombre())
                 .nickname(registroClienteDTO.nickname())
                 .fotoPerfil(registroClienteDTO.fotoPerfil())
                 .email(registroClienteDTO.email())
-                .password(registroClienteDTO.password())
+                .estado(EstadoRegistro.ACTIVO)
                 .ciudadResidencia(registroClienteDTO.ciudadResidencia())
                 .build();
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String passwordEncriptada = passwordEncoder.encode(registroClienteDTO.password());
+        cliente.setPassword( passwordEncriptada );
 
         Cliente clienteGuardado = clienteRepo.save(cliente);
 
@@ -66,6 +73,9 @@ public class ClienteServicioImpl implements ClienteServicio {
        if(existeEmail(actualizarClienteDTO.email())){
            throw new Exception("El email ya existe");
        }
+        if (comprobarEstado(actualizarClienteDTO.id())) {
+            throw new Exception("La cuenta ya ha sido eliminada");
+        }
        Cliente cliente = optionalCliente.get();
        cliente.setNombre(actualizarClienteDTO.nombre());
        cliente.setFotoPerfil(actualizarClienteDTO.fotoPerfil());
@@ -76,10 +86,13 @@ public class ClienteServicioImpl implements ClienteServicio {
 
     @Override
     public DetalleClienteDTO obtenerCliente(String id) throws Exception {
-       Optional<Cliente> optionalCliente = clienteRepo.findById(id);
+       Optional<Cliente> optionalCliente =clienteRepo.findById(id);
        if(optionalCliente.isEmpty()){
            throw new ResourceNotFoundException("No se pudo encontrar el id del cliente ,"+id);
        }
+        if (comprobarEstado(id)) {
+            throw new Exception("La cuenta ya ha sido eliminada, no se puede obtener");
+        }
        Cliente cliente=optionalCliente.get();
 
        return new DetalleClienteDTO(cliente.getCedula(),cliente.getNombre(),cliente.getFotoPerfil(),
@@ -91,6 +104,9 @@ public class ClienteServicioImpl implements ClienteServicio {
         Optional<Cliente> optionalCliente=clienteRepo.findById(id);
         if(optionalCliente.isEmpty()){
             throw new ResourceNotFoundException("Cliente no encontrado");
+        }
+        if (comprobarEstado(id)) {
+            throw new Exception("La cuenta ya ha sido eliminada");
         }
         Cliente cliente=optionalCliente.get();
         cliente.setEstado(EstadoRegistro.INACTIVO);
@@ -105,11 +121,12 @@ public class ClienteServicioImpl implements ClienteServicio {
 
         List<ItemClienteDTO> lista=new ArrayList<>();
         for (Cliente cliente : clientes){
-           lista.add(new ItemClienteDTO(cliente.getCedula(),cliente.getNombre(),cliente.getFotoPerfil(),
-                    cliente.getNickname(),cliente.getCiudadResidencia()));
+            if(cliente.getEstado()==EstadoRegistro.ACTIVO){
+                lista.add(new ItemClienteDTO(cliente.getCedula(),cliente.getNombre(),cliente.getFotoPerfil(),
+                        cliente.getNickname(),cliente.getCiudadResidencia()));
+            }
         }
         return lista;
-
     }
 
     private boolean existeEmail(String email) {
@@ -119,6 +136,17 @@ public class ClienteServicioImpl implements ClienteServicio {
         return clienteRepo.findByNickname(nickname).isPresent();
     }
     private boolean existeCedula(String cedula) {
-        return clienteRepo.findByEmail(cedula).isPresent();
+        return clienteRepo.findByCedula(cedula).isPresent();
+    }
+    private boolean comprobarEstado(String id)throws Exception {
+        Optional<Cliente> optionalCliente = clienteRepo.findById(id);
+        if (optionalCliente.isEmpty()) {
+            return false;
+        }
+        Cliente cliente = optionalCliente.get();
+        if (cliente.getEstado() == EstadoRegistro.INACTIVO) {
+            return true;
+        }
+        return false;
     }
 }

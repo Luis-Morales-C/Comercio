@@ -4,15 +4,11 @@ import co.edu.uniquindio.proyecto.dto.*;
 import co.edu.uniquindio.proyecto.exception.ResourceNotFoundException;
 import co.edu.uniquindio.proyecto.modelo.*;
 import co.edu.uniquindio.proyecto.repositorios.NegocioRepo;
-import co.edu.uniquindio.proyecto.servicios.NegocioServicio;
-import jakarta.validation.constraints.NotBlank;
-import org.assertj.core.api.Assert;
-import org.bson.codecs.jsr310.LocalTimeCodec;
+import co.edu.uniquindio.proyecto.servicios.interfaces.NegocioServicio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.client.ResourceAccessException;
 
 import java.time.LocalTime;
 import java.util.ArrayList;

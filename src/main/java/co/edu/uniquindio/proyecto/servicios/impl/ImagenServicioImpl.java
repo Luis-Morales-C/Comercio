@@ -1,6 +1,6 @@
-package co.edu.uniquindio.proyecto.impl;
+package co.edu.uniquindio.proyecto.servicios.impl;
 
-import co.edu.uniquindio.proyecto.servicios.ImagenesServicio;
+import co.edu.uniquindio.proyecto.servicios.interfaces.ImagenesServicio;
 
 import java.io.File;
 import java.io.FileOutputStream;

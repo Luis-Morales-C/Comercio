@@ -1,11 +1,11 @@
-package co.edu.uniquindio.proyecto.impl;
+package co.edu.uniquindio.proyecto.servicios.impl;
 
 import co.edu.uniquindio.proyecto.dto.*;
 import co.edu.uniquindio.proyecto.exception.ResourceNotFoundException;
 import co.edu.uniquindio.proyecto.modelo.*;
 import co.edu.uniquindio.proyecto.repositorios.ClienteRepo;
 import co.edu.uniquindio.proyecto.repositorios.NegocioRepo;
-import co.edu.uniquindio.proyecto.servicios.NegocioServicio;
+import co.edu.uniquindio.proyecto.servicios.interfaces.NegocioServicio;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

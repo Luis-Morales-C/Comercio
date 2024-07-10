@@ -1,6 +1,6 @@
-package co.edu.uniquindio.proyecto.impl;
+package co.edu.uniquindio.proyecto.servicios.impl;
 
-import co.edu.uniquindio.proyecto.servicios.EmailServicio;
+import co.edu.uniquindio.proyecto.servicios.interfaces.EmailServicio;
 import co.edu.uniquindio.proyecto.dto.EmailDTO;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;

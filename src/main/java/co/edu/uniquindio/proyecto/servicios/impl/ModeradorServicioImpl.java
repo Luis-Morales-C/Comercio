@@ -1,10 +1,10 @@
-package co.edu.uniquindio.proyecto.impl;
+package co.edu.uniquindio.proyecto.servicios.impl;
 
 import co.edu.uniquindio.proyecto.dto.DetalleNegocioDTO;
 import co.edu.uniquindio.proyecto.modelo.Negocio;
 import co.edu.uniquindio.proyecto.repositorios.ModeradorRepo;
 import co.edu.uniquindio.proyecto.repositorios.NegocioRepo;
-import co.edu.uniquindio.proyecto.servicios.ModeradorServicio;
+import co.edu.uniquindio.proyecto.servicios.interfaces.ModeradorServicio;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
