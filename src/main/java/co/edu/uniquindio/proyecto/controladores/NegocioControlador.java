@@ -7,6 +7,7 @@ import co.edu.uniquindio.proyecto.dto.MensajeDTO;
 import co.edu.uniquindio.proyecto.modelo.EstadoNegocio;
 import co.edu.uniquindio.proyecto.modelo.Ubicacion;
 import co.edu.uniquindio.proyecto.servicios.interfaces.NegocioServicio;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,26 +21,26 @@ public class NegocioControlador {
     private final NegocioServicio negocioServicio;
 
     @PostMapping("/crear-negocio")
-    public ResponseEntity<MensajeDTO<String>> crearNegocio(CrearNegocioDTO crearNegocioDTO)throws Exception{
+    public ResponseEntity<MensajeDTO<String>> crearNegocio(@Valid @RequestBody CrearNegocioDTO crearNegocioDTO)throws Exception{
         return ResponseEntity.ok().body(new MensajeDTO<>(false,negocioServicio.crearNegocio(crearNegocioDTO)));
     }
-    @PostMapping("/eliminar-negocio/{codigo}")
-    public ResponseEntity<MensajeDTO<String>> eliminarNegocio(String codigo)throws Exception{
+    @DeleteMapping("/eliminar-negocio/{codigo}")
+    public ResponseEntity<MensajeDTO<String>> eliminarNegocio(@PathVariable String codigo)throws Exception{
         negocioServicio.eliminarNegocio(codigo);
         return ResponseEntity.ok().body(new MensajeDTO<>(false,"Negocio eliminado exitosamente"));
     }
     @PutMapping("/actualizar-negocio")
-    public ResponseEntity<MensajeDTO<String>> actualizarNegocio(ActualizarNegocioDTO actualizarNegocioDTO)throws Exception{
+    public ResponseEntity<MensajeDTO<String>> actualizarNegocio(@Valid @RequestBody ActualizarNegocioDTO actualizarNegocioDTO)throws Exception{
         negocioServicio.actualizarNegocio(actualizarNegocioDTO);
         return ResponseEntity.ok().body(new MensajeDTO<>(false,"Negocio actualizado exitosamente"));
     }
     @GetMapping("/obtener-negocio-codigo/{codigo}")
-    public ResponseEntity<MensajeDTO<ItemNegocioDTO>> obtenerNegocioCodigo(String codigo)throws Exception{
+    public ResponseEntity<MensajeDTO<ItemNegocioDTO>> obtenerNegocioCodigo(@PathVariable String codigo)throws Exception{
         negocioServicio.obtenerNegocioPorCodigo(codigo);
         return ResponseEntity.ok().body(new MensajeDTO<>(false,negocioServicio.obtenerNegocioPorCodigo(codigo)));
     }
     @GetMapping("/obtener-negocio-nombre/{nombre}")
-    public ResponseEntity<MensajeDTO<ItemNegocioDTO>> obtenerNegocioNombre(String nombre)throws Exception{
+    public ResponseEntity<MensajeDTO<ItemNegocioDTO>> obtenerNegocioNombre(@PathVariable String nombre)throws Exception{
         negocioServicio.obtenerNegocioPorNombre(nombre);
         return ResponseEntity.ok().body(new MensajeDTO<>(false,negocioServicio.obtenerNegocioPorNombre(nombre)));
     }

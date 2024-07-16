@@ -28,7 +28,7 @@ public class NegocioServicioImpl implements NegocioServicio {
         if(existNombre(crearNegocioDTO.nombre())){
             throw new Exception("El nombre ya existe");
         }
-        Optional<Cliente> cliente=clienteRepo.findByCedula(crearNegocioDTO.codigoCliente());
+        Optional<Cliente> cliente=clienteRepo.findById(crearNegocioDTO.codigoCliente());
 
         if(cliente.isEmpty()){
             throw new Exception("el cliente no existe");
@@ -60,7 +60,7 @@ public class NegocioServicioImpl implements NegocioServicio {
         Optional<Negocio> optionalNegocio = negocioRepo.findById(codigo);
         if(optionalNegocio.isPresent()){
             Negocio negocio1=optionalNegocio.get();
-            negocioRepo.delete(negocio1);
+            negocioRepo.deleteById(negocio1.getCodigoNegocio());
         }else{
             throw new ResourceNotFoundException("El negocio no existe");
         }

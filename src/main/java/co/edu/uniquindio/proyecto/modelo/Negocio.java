@@ -12,9 +12,10 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-
 public class Negocio {
+
     @Id
+    @EqualsAndHashCode.Include
     String codigoNegocio;
     String codigoCliente;
     String nombre;
@@ -28,5 +29,4 @@ public class Negocio {
     float calificacion;
     List<HistorialRevision> historialRevisiones;
     List<Comentario> listaComentarios;
-
 }

@@ -21,7 +21,6 @@ public class Cliente extends Cuenta implements Serializable {
     private List<String> telefono;
     private List<Negocio> favoritos;
 
-
     @Builder
     public Cliente(String nombre, String password, String email, EstadoRegistro estado,String nickname,
                    String cedula, List<String> telefono, List<Negocio> favoritos,String fotoPerfil,String ciudadResidencia){

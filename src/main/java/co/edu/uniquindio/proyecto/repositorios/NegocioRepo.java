@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Repository
 public interface NegocioRepo extends MongoRepository<Negocio, String> {
-    Optional<Negocio> findById(String id);
+    Optional<Negocio> findByCodigoNegocio(String codigo);
     Optional<Negocio> findByNombre(String nombre);
     List<Negocio> findByEstadoNegocio(EstadoNegocio estadoNegocio);
     List<Negocio> findByUbicacion(Ubicacion ubicacion);

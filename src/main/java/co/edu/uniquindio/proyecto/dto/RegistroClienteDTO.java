@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 public record RegistroClienteDTO (
 
         @NotBlank @Length(max=50) String nombre,
-        @NotBlank @Id @Length(max=50) String cedula,
+        @NotBlank @Length(max=50) String cedula,
         @NotBlank String fotoPerfil,
         @NotBlank @Length(max=50) String nickname,
         @NotBlank @Email String email,

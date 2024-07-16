@@ -110,9 +110,7 @@ public class ClienteServicioImpl implements ClienteServicio {
         }
         Cliente cliente=optionalCliente.get();
         cliente.setEstado(EstadoRegistro.INACTIVO);
-
         clienteRepo.save(cliente);
-
     }
 
     @Override

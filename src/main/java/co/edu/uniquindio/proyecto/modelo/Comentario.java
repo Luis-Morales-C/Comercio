@@ -18,8 +18,8 @@ public class Comentario {
     @EqualsAndHashCode.Include
     String codigo;
     LocalDateTime fecha;
-    String codigoCliente;
     String codigoNegocio;
-    String mensaje;
-    String respuesta;
+    String codigoCliente;
+    List<String> mensaje;
+    List<String> respuesta;
 }

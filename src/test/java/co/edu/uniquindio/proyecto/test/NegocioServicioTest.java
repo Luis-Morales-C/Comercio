@@ -46,7 +46,7 @@ public class NegocioServicioTest {
         imagenes.add("img2");
 
         CrearNegocioDTO negocio = new CrearNegocioDTO(
-                "332545",
+                "668ed8187af1340fc0604e2e",
                 "FIRST",
                 "Hi,This my first business",
                 TipoNegocio.CAFETERIA,
